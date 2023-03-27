@@ -1,0 +1,15 @@
+1679506980120	geckodriver	INFO	Listening on 127.0.0.1:57387
+1679507026901	geckodriver	INFO	Listening on 127.0.0.1:35005
+
+Command '/usr/bin/firefox' requires the firefox snap to be installed.
+Please install it with:
+
+snap install firefox
+
+1679507027410	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "36325" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileNfmjlT"
+
+Command '/usr/bin/firefox' requires the firefox snap to be installed.
+Please install it with:
+
+snap install firefox
+
