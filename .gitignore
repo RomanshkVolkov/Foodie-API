@@ -1,0 +1,58 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+*.pyo
+*.pyre
+*.pyc
+db.sqlite3
+migrations/
+
+# Environments
+.env
+.venv
+ENV/
+env/
+venv/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.pytest_cache/
+.cache/
+.ipynb_checkpoints/
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Sphinx
+docs/_build/
+
+# pytest
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
