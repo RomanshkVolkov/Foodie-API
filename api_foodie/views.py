@@ -4,9 +4,15 @@ from rest_framework import status
 from .serializers import MySerializer
 from .foodie_finder.main import main
 from django.http import JsonResponse
+# Auth
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 class MyView(APIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         serializer = MySerializer(data=request.query_params)
         if serializer.is_valid():
