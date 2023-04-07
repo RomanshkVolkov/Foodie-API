@@ -24,7 +24,7 @@ class LogIn(ObtainAuthToken):
         return Response({'token': token.key}, status=status.HTTP_202_ACCEPTED)
 
 
-class SignIn(ObtainAuthToken):
+class SignUp(ObtainAuthToken):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
