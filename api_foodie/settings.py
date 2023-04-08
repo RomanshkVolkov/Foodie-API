@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-m-nz2f@5wmo2b2+ts6dx$a#^ncjtyxnb@3$u03e#u2z=-kpnt!
 DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app', '.now.sh',
-                 'foodie-api-production.up.railway.app']
+                 'foodie-api-production.up.railway.app', 'localhost']
 
 
 # Application definition
