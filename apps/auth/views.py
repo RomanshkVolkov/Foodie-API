@@ -31,8 +31,11 @@ class SignUp(ObtainAuthToken):
 
     def post(self, request):
         jd = json.loads(request.body)
-        user = User.objects.create_user(
-            username=jd['username'], password=jd['password'], email=jd['email'])
-        user.save()
+        try:
+            user = User.objects.create_user(
+                username=jd['username'], password=jd['password'], email=jd['email'], last_name=jd['last_name'], first_name=jd['first_name'])
+            user.save()
+        except:
+            return Response({'error': 'El nombre de usuario ya existe.'}, status=status.HTTP_409_CONFLICT)
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key}, status=status.HTTP_201_CREATED)
