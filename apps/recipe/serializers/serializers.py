@@ -14,6 +14,13 @@ class IngredientSerializer(serializers.ModelSerializer):
         model = Ingredient
         fields = '__all__'
 
+    def to_representation(self, instance):
+        # return super().to_representation(instance)
+        return {
+            "description": instance.description,
+            "url": instance.url
+        }
+
 
 class RecipeSerializer(serializers.ModelSerializer):
 
@@ -24,8 +31,9 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 class RecipeGetSerializer(serializers.ModelSerializer):
     categories = serializers.StringRelatedField(many=True)
-    ingredients = serializers.StringRelatedField(many=True)
+    # ingredients = serializers.StringRelatedField(many=True)
     instructions = serializers.StringRelatedField(many=True)
+    ingredients = IngredientSerializer(many=True)
 
     class Meta:
         model = Recipe

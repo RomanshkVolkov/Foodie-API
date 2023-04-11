@@ -9,6 +9,7 @@ from apps.recipe.models.ingredients import Ingredient
 from apps.recipe.models.recipe import Category, Recipe, RecipeCategory, Instruction
 from apps.recipe.serializers.serializers import CategorySerializer, RecipeSerializer, RecipeGetSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
+from api_foodie.foodie_finder.main import main
 
 
 class CategoryListApiView(generics.ListCreateAPIView):
@@ -53,7 +54,8 @@ class RecipeCreateView(APIView):
         ingredients = []
         categoriesList = request.data.pop('categories')
         categories = []
-        instructions = request.data.pop('instructions')
+        instructionsList = request.data.pop('instructions')
+        instructions = []
         recipe_serializer = self.serializer_class(data=request.data)
 
         if recipe_serializer.is_valid():
@@ -62,8 +64,9 @@ class RecipeCreateView(APIView):
             return Response(recipe_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         for ingredient_name in ingredient_names:
+            url = main(ingredient=ingredient_name)
             ingredient = Ingredient.objects.create(
-                description=ingredient_name, recipe=recipe)
+                description=ingredient_name, url=url, recipe=recipe)
             ingredients.append(ingredient)
             ingredient.save()
         for category in categoriesList:
@@ -72,9 +75,12 @@ class RecipeCreateView(APIView):
             categories.append(cate)
             cate.save()
 
-        instruction = Instruction.objects.create(
-            description=instructions, recipe=recipe)
-        instruction.save()
+        # print(instructions)
+        for instruction in instructionsList:
+            print(instruction)
+            instructionInstance = Instruction.objects.create(
+                description=instruction, recipe=recipe)
+            instructionInstance.save()
 
         data = {"mesage": "Receta creada correctamente"}
         return Response(data, status=status.HTTP_201_CREATED)
