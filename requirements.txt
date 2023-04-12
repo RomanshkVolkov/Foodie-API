@@ -20,6 +20,7 @@ nltk==3.6.3
 numpy==1.24.2
 packaging==23.0
 pathy==0.10.1
+Pillow==9.5.0
 preshed==3.0.8
 pycodestyle==2.10.0
 pydantic==1.8.2
