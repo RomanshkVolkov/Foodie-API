@@ -21,5 +21,4 @@ def get_ingredient_id(search_page_url, search_text, training_mode):
         if closest_title in a_tag.text:
             id = a_tag['href']
             break
-    print(id)
     return id

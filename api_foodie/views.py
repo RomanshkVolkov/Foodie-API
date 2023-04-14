@@ -14,7 +14,7 @@ class MyView(APIView):
         serializer = MySerializer(data=request.query_params)
         if serializer.is_valid():
             response = serializer.to_representation(None)
-            ingredient_url = main(response['search'])
+            ingredient_url = main(response['search'], response['training_mode'])
             data = {'url': ingredient_url}
             return Response(data, status=status.HTTP_200_OK)
         else:
