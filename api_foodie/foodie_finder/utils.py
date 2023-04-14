@@ -63,7 +63,6 @@ def get_relevance_score_from_csv(search_term, title):
             if row[0] == search_term and row[1] == title:
                 total_relevance_score += float(row[3])
                 count += 1
-
         if count > 0:
             return total_relevance_score / count  # Devuelve el promedio de los scores de relevancia
         else:

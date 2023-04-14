@@ -19,6 +19,5 @@ def get_ingredient_url_from_name(ingredient_name, training_mode):
 
 
 def main(ingredient, training_mode):
-    print(training_mode)
     ingredient_url = get_ingredient_url_from_name(ingredient, training_mode)
     return ingredient_url
