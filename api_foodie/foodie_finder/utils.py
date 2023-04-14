@@ -26,7 +26,6 @@ def preprocess(text):
 
     # Stemming
     stems = [nlp(token)[0].lemma_ for token in tokens]
-    print(stems)
 
     return " ".join(stems)
 
@@ -66,7 +65,6 @@ def get_relevance_score_from_csv(search_term, title):
                 count += 1
 
         if count > 0:
-            print(total_relevance_score / count)
             return total_relevance_score / count  # Devuelve el promedio de los scores de relevancia
         else:
             return 0  # Si no se encuentra la combinación de término de búsqueda y título, devuelve 0
