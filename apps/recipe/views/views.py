@@ -64,9 +64,9 @@ class RecipeCreateView(APIView):
             return Response(recipe_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         for ingredient_name in ingredient_names:
-            url = main(ingredient=ingredient_name)
+            # url = main(ingredient=ingredient_name)
             ingredient = Ingredient.objects.create(
-                description=ingredient_name, url=url, recipe=recipe)
+                description=ingredient_name.name, url=ingredient_name.url, recipe=recipe)
             ingredients.append(ingredient)
             ingredient.save()
         for category in categoriesList:
