@@ -1,0 +1,21 @@
+search_text,title,jaccard_score,relevance_score
+arroz,Arroz Great Value super extra 900 g,0.3076923076923077,5
+arroz,Arroz Great Value mexicano grano grueso 900 g,0.25,5
+arroz,Arroz La Merced super extra 907 g,0.26666666666666666,5
+arroz,Arroz SOS grano largo uruguayo 1 kg,0.36363636363636365,4
+arroz,Arroz SOS grueso súper extra 1 kg,0.3333333333333333,5
+arroz,Arroz Knorr a la poblana 155 g,0.4,2
+arroz,Arroz Knorr a la española 155 g,0.36363636363636365,2
+arroz,Arroz SOS impegable parbolizado 1 kg,0.2857142857142857,3
+arroz,Arroz Verde Valle precocido blanco 300 g,0.2857142857142857,2
+arroz,Arroz Verde Valle grano grueso 900 g,0.3333333333333333,5
+cocoa,"Cocoa en polvo Hershey's natural, 200 g",0.2,5
+cocoa,Cocoa World Table en polvo 228 g,0.21428571428571427,5
+cocoa,Alimento en polvo para preparar bebida Nestlé Nesquik opti-start menos azúcar sabor chocolate 280 g,0.14285714285714285,3
+cocoa,Crema de cacahuate De Mi Pueblo con cocoa 300 g,0.1875,1
+cocoa,Chocolate en polvo Swiss Miss con malvaviscos 312 g,0.2,1
+cocoa,Barras de amaranto Eat Natural Lima Limón orgánico con cacao 6 barras,0.2,1
+cocoa,Cocoa orgánica Aires de Campo 150 g,0.25,4
+cocoa,Coco rallado Verde Valle 100 g,0.3333333333333333,1
+cocoa,Coco de agua por pieza,0.2727272727272727,1
+cocoa,Agua de coco A de Coco 1 l,0.375,1

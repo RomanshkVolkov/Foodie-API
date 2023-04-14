@@ -5,7 +5,7 @@ from .similarity import find_closest_title
 from .utils import get_user_agent
 
 
-def get_exact_ingredient(search_page_url, search_text):
+def get_exact_ingredient(search_page_url, search_text, training_mode):
     response = requests.get(search_page_url, headers=get_user_agent())
     if (response.status_code != 200):
         return None
@@ -17,7 +17,7 @@ def get_exact_ingredient(search_page_url, search_text):
     ]
     for title in titles:
         print(title)
-    closest_title = find_closest_title(search_text, titles)
+    closest_title = find_closest_title(search_text, titles, training_mode)
     return closest_title
 
 
