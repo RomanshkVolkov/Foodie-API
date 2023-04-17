@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from .similarity import find_closest_title
 from .utils import get_user_agent
 
+
 def get_ingredient_id(search_page_url, search_text, training_mode):
     response = requests.get(search_page_url, headers=get_user_agent())
     if (response.status_code != 200):
