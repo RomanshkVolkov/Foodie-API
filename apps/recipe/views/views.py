@@ -36,18 +36,18 @@ class RecipeDetailView(APIView):
 
     def delete(self, request, pk):
         recipe = self.get_object(pk)
-        image_path = recipe.image.path
+        # image_path = recipe.image.path
         recipe.delete()
         # Elimina la imagen de la receta si existe
-        if os.path.exists(image_path):
-            os.remove(image_path)
+        # if os.path.exists(image_path):
+        #    os.remove(image_path)
         data = {"message": "Receta eliminada correctamente"}
         return Response(data, status=status.HTTP_204_NO_CONTENT)
 
 
 class RecipeCreateView(APIView):
     serializer_class = RecipeSerializer
-    parser_classes = (MultiPartParser, FormParser)
+    # parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request):
         ingredient_names = request.data.pop('ingredients')
@@ -65,8 +65,9 @@ class RecipeCreateView(APIView):
 
         for ingredient_name in ingredient_names:
             # url = main(ingredient=ingredient_name)
+            print(ingredient_name)
             ingredient = Ingredient.objects.create(
-                description=ingredient_name.name, url=ingredient_name.url, recipe=recipe)
+                description=ingredient_name['description'], url=ingredient_name['url'], recipe=recipe)
             ingredients.append(ingredient)
             ingredient.save()
         for category in categoriesList:
