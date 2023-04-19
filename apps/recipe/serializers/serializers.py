@@ -34,10 +34,14 @@ class RecipeGetSerializer(serializers.ModelSerializer):
     # ingredients = serializers.StringRelatedField(many=True)
     instructions = serializers.StringRelatedField(many=True)
     ingredients = IngredientSerializer(many=True)
+    favorite = serializers.SerializerMethodField()
 
     class Meta:
         model = Recipe
         fields = '__all__'
+
+    def get_favorite(self, obj):
+        return obj.favorite
 
 
 class RatingSerializer(serializers.ModelSerializer):

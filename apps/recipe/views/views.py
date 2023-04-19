@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 import os
 from django.shortcuts import get_object_or_404
 from django.http import Http404
@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from apps.recipe.models.ingredients import Ingredient
-from apps.recipe.models.recipe import Category, Recipe, RecipeCategory, Instruction
+from apps.recipe.models.recipe import Category, Recipe, RecipeCategory, Instruction, Favorite
 from apps.recipe.serializers.serializers import CategorySerializer, RecipeSerializer, RecipeGetSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 from api_foodie.foodie_finder.main import main
@@ -21,7 +21,18 @@ class CategoryListApiView(generics.ListCreateAPIView):
 
 
 class RecipeDetailView(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = RecipeGetSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return RecipeGetSerializer
+        return self.serializer_class
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
 
     def get_object(self, pk):
         try:
@@ -31,6 +42,12 @@ class RecipeDetailView(APIView):
 
     def get(self, request, pk, format=None):
         recipe = self.get_object(pk)
+        if request.user.is_authenticated:
+            print("entro a auth")
+            recipe.favorite = Favorite.objects.filter(
+                user=request.user, recipe=recipe).exists()
+        else:
+            recipe.favorite = False
         serializer = self.serializer_class(recipe)
         return Response(serializer.data)
 
@@ -46,8 +63,19 @@ class RecipeDetailView(APIView):
 
 
 class RecipeCreateView(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = RecipeSerializer
     # parser_classes = (MultiPartParser, FormParser)
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return RecipeGetSerializer
+        return self.serializer_class
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
 
     def post(self, request):
         ingredient_names = request.data.pop('ingredients')
@@ -88,5 +116,11 @@ class RecipeCreateView(APIView):
 
     def get(self, request):
         recipes = Recipe.objects.all()
+        for recipe in recipes:
+            if request.user.is_authenticated:
+                recipe.favorite = Favorite.objects.filter(
+                    user=request.user, recipe=recipe).exists()
+            else:
+                recipe.favorite = False
         serializer = RecipeGetSerializer(recipes, many=True)
         return Response(serializer.data)

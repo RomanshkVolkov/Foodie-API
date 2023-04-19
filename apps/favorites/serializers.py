@@ -7,7 +7,6 @@ class FavoriteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Favorite
-        # fields = '__all__'
         exclude = ['user']
 
     def validate(self, data):
@@ -29,3 +28,8 @@ class GetFavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorite
         fields = '__all__'
+
+    def get_recipe(self, obj):
+        print(obj)
+        obj.favorite = True
+        return obj

@@ -11,7 +11,10 @@ class FavoritesView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-        return Favorite.objects.filter(user=user)
+        favorites = Favorite.objects.filter(user=user)
+        for favorite in favorites:
+            favorite.recipe.favorite = True
+        return favorites
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
